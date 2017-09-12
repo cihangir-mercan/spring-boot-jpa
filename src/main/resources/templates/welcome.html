@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf Example - Login Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div class="container">
+		<h6 id="my-header">Hello <span sec:authentication="name"></span></h6>  
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${userList}">
+					<td th:text="${user.username}"></td>
+					<td th:text="${user.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<form action="#" th:action="@{/logout}" method="post">
+			<button type="submit" class="btn">Log out</button>
+		</form>
+
+	</div>
+
+	<script src="webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="webjars/popper.js/1.12.5/dist/umd/popper.min.js"></script>
+	<script type="text/javascript"
+		src="webjars/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</body>
+</html>

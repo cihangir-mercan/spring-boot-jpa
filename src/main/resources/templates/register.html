@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf Example - Register Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div class="container">
+		<form id="my-form" th:action="@{/register}" th:object="${user}" method="POST">               
+            <fieldset>
+                <legend>Register</legend>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"></div>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></div>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"></div>                
+                <div th:if="${param.error}" class="alert alert-danger">    
+                    Username exists.
+                </div>
+                <label for="username">Username</label>
+                <input type="text" th:field="*{username}" id="username" name="username" autofocus="autofocus"/> 
+                <label for="email">Email</label>
+                <input type="text" th:field="*{email}" id="email" name="email"/>            
+                <label for="password">Password</label>
+                <input type="password" th:field="*{password}" id="password" name="password"/>    
+                <div class="form-actions">
+                    <button type="submit" class="btn">Register</button>
+                </div>
+            </fieldset>
+        </form>
+        <h6><a href="login">Already have an account?</a></h6>  
+	</div>
+
+	<script src="webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="webjars/popper.js/1.12.5/dist/umd/popper.min.js"></script>
+	<script type="text/javascript"
+		src="webjars/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</body>
+</html>
